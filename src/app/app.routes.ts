@@ -20,7 +20,7 @@ export const routes: Routes = [
 {
     path: 'products',
     component: ProductsComponent,
-    canActivate: [AuthGuard]
+    
 },
 {
     path: 'addProduct',
@@ -30,7 +30,7 @@ export const routes: Routes = [
 {
     path: 'shopping-cart',
     component: ShoppingCartComponent,
-    canActivate: [AuthGuard]
+    
 },
 {
     path: 'admin-portal',
@@ -42,5 +42,5 @@ export const routes: Routes = [
     component: UserportalComponent,
     canActivate: [AuthGuard]
 },
-{path: '', redirectTo: 'login', pathMatch: 'full'},
+{path: '', redirectTo: 'products', pathMatch: 'full'},
 ];
