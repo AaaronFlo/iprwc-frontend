@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<section id="products">
+
+    <div class="products-header">
+        <h1>Available Products</h1>
+        <p>Browse our selection of top-quality computer products.</p>
+    </div>
+
+    <header>
+        <h2>Products</h2>
+    </header>
+
+    <ul>
+        @for(product of products | async; track $index){
+            <li>
+                <app-product [product]="product"></app-product>
+            </li>
+        }
+    </ul>
+</section>

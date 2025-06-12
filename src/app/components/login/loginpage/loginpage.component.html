@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+            <label>Email:</label>
+            <input 
+                formControlName="email" 
+                type="email" 
+                ngModel 
+                name="email" 
+                required 
+                email>
+            <div class="error-text">
+                <p *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.dirty">Email is required</p>
+                <p *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched">Please enter a valid email address</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Password:</label>
+            <input 
+                formControlName="password" 
+                type="password" 
+                ngModel 
+                name="password" 
+                required 
+                minlength="6">
+            <div class="error-text">
+                <p *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.dirty">Password is required</p>
+                <p *ngIf="loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched">Password must be at least 6 characters long</p>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <div class="register-link">
+        <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    </div>
+</div>

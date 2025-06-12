@@ -1,0 +1,36 @@
+<!-- <app-card>
+    <article>
+        <img [src]="product().imageUrl" alt="">
+        <h2>{{ product().name }}</h2>
+        <p>{{ product().description }}</p>
+        <p>${{ product().price }}</p>
+
+        <p class="actions" >
+            <button *ngIf="isLoggedIn$ | async" type="button" (click)="addToCart(product())">Add to cart</button>
+          </p>
+    </article>
+</app-card> -->
+
+<app-card>
+    <article>
+        <div class="image-container">
+            <img [src]="product().imageUrl" alt="{{ product().name }}">
+        </div>
+        
+        <div class="content">
+            <h2 class="product-name">{{ product().name }}</h2>
+            <div class="description">{{ product().description }}</div>
+            <div class="price">€{{ product().price | number:'1.2-2' }}</div>
+            
+            <div class="actions">
+                @if (product().inStock === false) {
+                    <button type="button" class="out-of-stock" disabled>Not in Stock</button>
+                } @else if (isLoggedIn$ | async) {
+                    <button type="button" (click)="addToCart(product())">Add to Cart</button>
+                } @else {
+                    <button type="button" disabled>Login to Purchase</button>
+                }
+            </div>
+        </div>
+    </article>
+</app-card>

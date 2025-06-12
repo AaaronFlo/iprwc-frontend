@@ -1,0 +1,50 @@
+<app-header></app-header>
+<div class="new-product">
+    <h2>Add new Product</h2>
+    <form (ngSubmit)="OnSubmit()">
+        <p>
+            <label for="name">Product Name</label>
+            <input type="text" id="name" name="name" [(ngModel)]="enteredName" placeholder="Product Name" required>
+        </p>
+        <p>
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description" [(ngModel)]="enteredDescription" placeholder="Product Description" required>
+        </p>
+        <p>
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" [(ngModel)]="enteredPrice" placeholder="Product Price" required>
+        </p>
+        <p>
+            <label for="image">Image URL</label>
+            <input type="text" id="image" name="image" [(ngModel)]="enteredImageUrl" placeholder="Product Image URL" required>
+        </p>
+        <p>
+            <label for="inStock">In Stock</label>
+            <input type="checkbox" id="inStock" name="inStock" [(ngModel)]="enteredInStock" placeholder="Product In Stock">
+        </p>
+
+        <p class="actions">
+            <button type="button" class="cancelBtn" (click)="onCancel()">Cancel</button>
+            <button type="submit" class="submitBtn">Create</button>
+        </p>
+    </form>
+</div>
+
+<div class="product-list">
+    <h2>Existing Products</h2>
+    <div class="product-items">
+        <div class="product-item" *ngFor="let product of products">
+            <img [src]="product.imageUrl" alt="{{ product.name }}">
+            <div class="product-details">
+                <h3>{{ product.name }}</h3>
+                <p class="description">{{ product.description }}</p>
+                <p class="price">€{{ product.price.toFixed(2) }}</p>
+                <p class="stock">{{ product.inStock ? 'In Stock' : 'Out of Stock' }}</p>
+            </div>
+            <div class="product-actions">
+                <button class="deleteBtn" (click)="deleteProduct(product.id!)">Delete</button>
+            </div>
+        </div>
+        <p *ngIf="products.length === 0" class="no-products">No products available.</p>
+    </div>
+</div>
